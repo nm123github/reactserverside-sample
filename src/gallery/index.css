@@ -1,0 +1,11 @@
+
+.container {
+	margin: 0 auto;
+
+	display: flex;
+	width: 800px;
+	border: 1px solid black;
+	flex-flow: row wrap;
+	justify-content: space-around;
+	align-items: flex-start;
+}

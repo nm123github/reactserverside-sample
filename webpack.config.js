@@ -1,5 +1,6 @@
 var path = require('path');
- 
+var combineLoaders = require('webpack-combine-loaders');
+
 var config = {
   context: path.join(__dirname, 'src'),
   entry: [
@@ -16,6 +17,19 @@ var config = {
         exclude: /node_modules/,
         loaders: ['babel'],
       },
+      {
+        test: /\.css$/,
+        loader: combineLoaders([
+        {
+          loader: 'style-loader'
+        }, {
+          loader: 'css-loader',
+          query: {
+            modules: true,
+            localIdentName: '[name]__[local]___[hash:base64:5]'
+          }
+        }])
+      }     
     ],
   },
   resolveLoader: {
