@@ -29,9 +29,7 @@
     "react": "~15.4.1",
     "react-dom": "~15.4.1",
     "webpack": "~1.14.0",
-    "webpack-dev-middleware": "~1.9.0"
-  },
-  "devDependencies": {
+    "webpack-dev-middleware": "~1.9.0",
     "css-loader": "^0.28.4",
     "style-loader": "^0.18.2",
     "webpack-combine-loaders": "^2.0.3"

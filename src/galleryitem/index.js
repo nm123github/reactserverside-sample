@@ -12,7 +12,7 @@ class GalleryItem extends React.Component {
  
   render() {
     return (
-      <div>hi</div>
+      <div>hel</div>
     );
   }
 }

@@ -21,7 +21,7 @@ class Gallery extends React.Component {
     );
 
     return (
-      <div>he</div>
+      <div>hel</div>
     );
   }
 }
