@@ -11,8 +11,15 @@ class GalleryItem extends React.Component {
   }
  
   render() {
+
+    var imgPath = "images/" + this.props.item.id + ".jpg";
+
     return (
-      <div>hel</div>
+      <div className={css.item}>
+        <div><img src={imgPath}/></div>
+        <div><b>{this.props.item.title}</b></div>
+        <div>{this.props.item.description}</div>
+      </div>
     );
   }
 }

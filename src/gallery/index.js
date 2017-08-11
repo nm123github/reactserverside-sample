@@ -1,6 +1,6 @@
 
 import React from 'react';
-import GalleryItem from './../galleryitem';
+import GalleryItem from '../galleryitem';
 
 import css from './index.css';
 
@@ -13,16 +13,19 @@ class Gallery extends React.Component {
   }
  
   render() {
-    if ( !this.props.images )
+
+    if ( this.props.images.length === 0 )
       return null;
 
-    const galleryItems = this.props.images.map((image) =>
-      <GalleryItem item={image} />
-    );
-
     return (
-      <div>hel</div>
+      <div className={css.container}>
+        {this.props.images.map((image) =>
+          <GalleryItem key={image.id} item={image} />
+        )}
+      </div>
     );
   }
+
 }
+
 export default Gallery;

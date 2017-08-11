@@ -37,7 +37,7 @@ app.use(mockApiMiddleware({
 app.use(webpackDevMiddleware(compiler, {
   hot: true,
   filename: 'bundle.js',
-  publicPath: path.join(__dirname, 'www'),
+  publicPath: "/",
   stats: {
     colors: true,
   },

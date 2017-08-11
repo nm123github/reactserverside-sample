@@ -1,7 +1,17 @@
 
 .item {
-	
 	display: flex;
-	width: 300px;
+	flex-direction: column;
+	width: 350px;
 	border: 1px solid black;
+	margin: 10px;	
+}
+
+.item > div {
+	padding: 10px;
+}
+
+.item > div:nth-child(1) {
+	display: flex;
+	justify-content: center;
 }

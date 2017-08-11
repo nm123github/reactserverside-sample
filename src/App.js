@@ -11,6 +11,8 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    
+    // fetch (mock) images data!
     fetch('http://localhost:3000/api/images').then((res) => {
       if (res.status === 200)
         return res.json();
