@@ -1,3 +1,2 @@
-My starter react project
 
-Simply following instructions from http://andrewhfarmer.com/build-your-own-starter/
+Server-side rendering vs Client-side rendering...
