@@ -11,8 +11,6 @@ var app = express();
  
 var compiler = webpack(webpackConfig);
 
-app.use(express.static(__dirname + '/www'));
-
 app.use(mockApiMiddleware({
   baseUrl: '', //optional
   endpoints: [
@@ -30,7 +28,18 @@ app.use(mockApiMiddleware({
               }
               return arr;
           }
-      }
+      },
+      {
+          path: '/api/images/:id',
+          template: function(params) {
+              return {
+                id: params.$routeMatch.id,
+                title: casual.title,
+                path: "images/" + params.$routeMatch.id + ".jpg",
+                description: casual.description
+              };
+          }
+      }      
     ]
 }));
 
@@ -43,6 +52,15 @@ app.use(webpackDevMiddleware(compiler, {
   },
   historyApiFallback: true,
 }));
+
+app.use(express.static(__dirname + '/www'));
+
+// this needs to be added for client-side routing to work!
+// say for example we go to /viewitem/1, express() needs to know it should serve index.html!
+// cause thats where all the code is!
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname + '/www/index.html'));
+});
  
 var server = app.listen(3000, function() {
   var host = server.address().address;
