@@ -29,7 +29,7 @@ class ViewItem extends React.Component {
  
   render() {
 
-    if ( !this.state.item )
+    if ( !this.state.item.id )
       return null;
 
     var imgPath = "/images/" + this.state.item.id + ".jpg";
