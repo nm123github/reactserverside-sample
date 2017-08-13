@@ -15,7 +15,7 @@ var config = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loaders: ['babel'],
+        loaders: ['babel-loader'],
       },
       {
         test: /\.css$/,
@@ -31,16 +31,6 @@ var config = {
         }])
       }     
     ],
-  },
-  resolveLoader: {
-    root: [
-      path.join(__dirname, 'node_modules'),
-    ],
-  },
-  resolve: {
-    root: [
-      path.join(__dirname, 'node_modules'),
-    ],
-  },
+  }
 };
 module.exports = config;
