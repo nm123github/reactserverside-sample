@@ -1,10 +1,10 @@
 var path = require('path');
 var combineLoaders = require('webpack-combine-loaders');
 
-var config = {
+var browserConfig = {
   context: path.join(__dirname, 'src'),
   entry: [
-    './main.js',
+    './client/main.js',
   ],
   output: {
     path: path.join(__dirname, 'www'),
@@ -33,4 +33,4 @@ var config = {
     ],
   }
 };
-module.exports = config;
+module.exports = [ browserConfig ];
