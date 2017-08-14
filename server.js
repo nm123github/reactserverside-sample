@@ -6,10 +6,15 @@ var webpackDevMiddleware = require('webpack-dev-middleware');
 var mockApiMiddleware = require('connect-mock-api').middleware;
 var webpack = require('webpack');
 var webpackConfig = require('./webpack.config.js');
+var ReactDOMServer = require('react-dom/server');
+var MyApp = require('./src/shared/App');
 
 var app = express();
  
 var compiler = webpack(webpackConfig);
+
+var str = ReactDOMServer.renderToString(MyApp);
+console.log(str);
 
 app.use(mockApiMiddleware({
   baseUrl: '', //optional
