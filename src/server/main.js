@@ -1,51 +1,40 @@
-/**
-Universal JavaScript Apps with React Router 4
-https://ebaytech.berlin/universal-web-apps-with-react-router-4-15002bb30ccb
-
-The ultimate Webpack setup
-https://www.christianalfoni.com/articles/2015_04_19_The-ultimate-webpack-setup
-
-Backend Apps with Webpack (Part I)
-http://jlongster.com/Backend-Apps-with-Webpack--Part-I
-*/
-
-/*
-This does not work right now!!
-*/
 
 import express from "express";
 import path from "path";
-import casual from "casual";
-import React from "react";
-import webpack from "webpack";
-import webpackDevMiddleware from "webpack-dev-middleware";
-import { mockApiMiddleware } from "connect-mock-api";
-import { renderToString } from "react-dom/server";
-import { StaticRouter , matchPath } from 'react-router';
-import App from "../shared/App";
+import mockApiMiddleware from "./mock-api-middleware";
 
-import webpackConfig from "../../webpack.config.js";
+var app = express();
 
-const app = express();
+app.use(mockApiMiddleware);
 
-app.use(express.static("public"));
+// Was facing an issue where __dirname returns '/' when js file is built with webpack
+// https://github.com/webpack/webpack/issues/1599
+// node: {
+//  __dirname: false
+//}
+app.use(express.static(__dirname + '/www'));
 
-app.get("*", (req, res) => {
-  res.send(`
-      <!DOCTYPE html>
-      <head>
-        <title>Universal Reacl</title>
-        <link rel="stylesheet" href="/css/main.css">
-        <script src="/bundle.js" defer></script>
-      </head>
+// this needs to be added for client-side routing to work!
+// say for example we go to /viewitem/1, express() needs to know it should serve index.html!
+// cause thats where all the code is!
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname + '/www/index.html'));
+  // res.send(`
+  //     <!DOCTYPE html>
+  //     <head>
+  //       <script src="/bundle.js" defer></script>
+  //     </head>
 
-      <body>
-        <div id="root">${renderToString(<App />)}</div>
-      </body>
-    </html>
-  `);
+  //     <body>
+  //       <div id="mount">${renderToString(<App />)}</div>
+  //     </body>
+  //   </html>
+  // `);
+});
+ 
+var server = app.listen(3000, "localhost", function() {
+  var host = server.address().address;
+  var port = server.address().port;
+  console.log('Example app listening at http://%s:%s', host, port);
 });
 
-app.listen(process.env.PORT || 3000, () => {
-  console.log("Server is listeninggg");
-});
