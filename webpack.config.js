@@ -1,5 +1,6 @@
 var path = require('path');
 var combineLoaders = require('webpack-combine-loaders');
+var nodeExternals = require('webpack-node-externals');
 
 var browserConfig = {
   context: path.join(__dirname, 'src'),
@@ -49,7 +50,7 @@ var serverConfig = {
     filename: "server.js",
     libraryTarget: "commonjs2"
   },
-  externals: /^[a-z\-0-9]+$/,
+  externals: nodeExternals(),
   module: {
     loaders: [
       {
