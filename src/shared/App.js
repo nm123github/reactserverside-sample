@@ -1,45 +1,29 @@
 
 import React from 'react';
+import { BrowserRouter, Route, browserHistory } from 'react-router-dom'
+import { Provider } from 'react-redux';
+
 import Gallery from './gallery';
 import ViewItem from './viewitem';
-
-import { BrowserRouter, Route, browserHistory } from 'react-router-dom'
+import store from './redux';
 
 class App extends React.Component {
+  
   constructor() {
     super();
-    this.state = {
-      images: [],
-    };
-  }  
-
-  componentDidMount() {
-
-    // fetch (mock) images data!
-    fetch('http://localhost:3000/api/images').then((res) => {
-      if (res.status === 200)
-        return res.json();
-
-      throw "Error retrieving data..."        
-    }).then((data) => {
-      this.setState({
-        images: data,
-      })      
-    });
-
-  }  
+  }
 
   render() {
 
-    var ImageGallery = () => <Gallery images={this.state.images} />;
-
     return (
-      <BrowserRouter history={ browserHistory }>
+        <Gallery />
+
+      /*<BrowserRouter history={ browserHistory }>
         <div>
-          <Route exact path="/" component={ImageGallery} />
+          <Route exact path="/" component={Gallery} />
           <Route path="/viewitem/:id" component={ViewItem} />
         </div>
-      </BrowserRouter>
+      </BrowserRouter>*/
     );
   }
 
