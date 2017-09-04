@@ -62,7 +62,7 @@ var serverConfig = {
         test: /\.css$/,
         loader: combineLoaders([
         {
-          loader: 'style-loader'
+          loader: 'node-style-loader'
         }, {
           loader: 'css-loader',
           query: {

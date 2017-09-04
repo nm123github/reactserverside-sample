@@ -8,13 +8,13 @@ class Gallery extends React.Component {
   
   constructor() {
     super();
-    this.state = {
-    };
+    // this.state = {
+    // };
   }
  
   render() {
 
-    if ( this.props.images.length === 0 )
+    if ( !this.props.images || this.props.images.length === 0 )
       return null;
 
     return (
