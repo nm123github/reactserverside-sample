@@ -12,24 +12,24 @@ app.use(mockApiMiddleware);
 // node: {
 //  __dirname: false
 //}
-app.use(express.static(__dirname + '/www'));
+app.use(express.static(__dirname + '/www'));  // for images and js files!
+
+// index.html is server from app.get('*') handler!
 
 // this needs to be added for client-side routing to work!
 // say for example we go to /viewitem/1, express() needs to know it should serve index.html!
 // cause thats where all the code is!
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname + '/www/index.html'));
-  // res.send(`
-  //     <!DOCTYPE html>
-  //     <head>
-  //       <script src="/bundle.js" defer></script>
-  //     </head>
-
-  //     <body>
-  //       <div id="mount">${renderToString(<App />)}</div>
-  //     </body>
-  //   </html>
-  // `);
+app.get('*', (req, res) => {  
+  // client side render index.html (before server side rendering)
+  res.send(`
+    <html>
+      <head>
+        <script src="/bundle.js"></script> 
+      </head>
+      <body>
+        <div id="mount"></div>
+      </body>
+    </html>`);
 });
  
 var server = app.listen(3000, "localhost", function() {
